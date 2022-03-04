@@ -1,0 +1,7 @@
+1node_modules
+2npm-debug.log
+3build
+4.dockerignore
+5**/.git
+6**/.DS_Store
+7**/node_modules
