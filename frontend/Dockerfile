@@ -1,10 +1,11 @@
 FROM node:14 as build
-#USER node
+USER node
 WORKDIR /app
-#COPY --chown=node:node package*.json ./
-COPY package*.json ./
+COPY --chown=node:node package*.json ./
+
 RUN npm install
-COPY . .
+
+COPY --chown=node:node . .
 RUN npm run build
 
 FROM nginx:1.17
