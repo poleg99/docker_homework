@@ -1,4 +1,5 @@
-FROM node:14 as build
+FROM node:14.2.0-slim as build
+ENV NODE_ENV production
 USER node
 WORKDIR /app
 COPY --chown=node:node package*.json ./
