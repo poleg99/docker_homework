@@ -1,0 +1,49 @@
+version: '3.7'
+services:
+  frontend:
+    image: opavlov/frontend:0.2
+    ports:
+      - 3000:80
+    env_file:
+      - .env
+    depends_on:
+      - database
+      - backend
+    networks:
+      - front-network
+      - back-network
+  database:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - ${HOME}/docker-task/postgres-data:/var/lib/postgresql/data/
+    env_file:
+      - .env
+    networks:
+      - back-network
+  backend:
+    image: opavlov/backend:0.2
+    ports:
+      - 8000:8000
+    env_file:
+      - .env
+    depends_on:
+      - database
+    networks:
+      - back-network
+volumes:
+  postgres_data:
+networks:
+  front-network:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.21.1.0/24
+        gateway: 172.21.1.1
+  back-network:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.21.2.0/24
+        gateway: 172.21.2.1
