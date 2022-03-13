@@ -1,4 +1,5 @@
 FROM python:3.9
+LABEL maintainer="Oleg Pavlov p_oleg@mail.ru" version="1.0.0"
 
 ENV NODE_ENV production
 ENV PYTHONDONTWRITEBYTECODE 1

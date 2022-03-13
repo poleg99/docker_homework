@@ -1,4 +1,5 @@
 FROM node:14.2.0-slim as build
+LABEL maintainer="Oleg Pavlov p_oleg@mail.ru" version="1.0.0"
 ENV NODE_ENV production
 USER node
 WORKDIR /app
