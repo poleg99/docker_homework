@@ -12,6 +12,7 @@ services:
     networks:
       - front-network
       - back-network
+    restart: unless-stopped
   database:
     image: postgres:latest
     ports:
@@ -22,6 +23,7 @@ services:
       - .env
     networks:
       - back-network
+    restart: unless-stopped
   backend:
     image: opavlov/backend:0.2
     ports:
@@ -32,6 +34,7 @@ services:
       - database
     networks:
       - back-network
+    restart: unless-stopped
 volumes:
   postgres_data:
 networks:
