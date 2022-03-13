@@ -7,9 +7,11 @@ ENV PYTHONUNBUFFERED 1
 RUN mkdir /app
 ADD . /app
 WORKDIR /app
+RUN apt-get update  && apt-get -y install curl
 RUN /usr/local/bin/pip install --upgrade pip setuptools wheel
 RUN pip install -r requirements.txt
 
 EXPOSE 8000
 RUN chmod +x /app/docker-entrypoint.sh
+HEALTHCHECK CMD curl -f http://localhost:8000/admin || exit 1
 ENTRYPOINT ["/bin/sh", "/app/docker-entrypoint.sh"]

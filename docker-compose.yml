@@ -25,7 +25,7 @@ services:
       - back-network
     restart: unless-stopped
   backend:
-    image: opavlov/backend:0.2
+    image: opavlov/backend:0.3
     ports:
       - ${BACK_PORT}:8000
     env_file:
